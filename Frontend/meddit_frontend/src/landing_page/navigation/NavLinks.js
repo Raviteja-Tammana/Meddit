@@ -6,9 +6,6 @@ import './NavLinks.css'
 const NavLinks = props => {
     return (
         <ul className='nav-links'>
-            <li>
-                <NavLink to="/" exact>ABOUT US</NavLink>
-            </li>
             <li className='login'>
                 <NavLink to="/auth">LOG IN</NavLink>
             </li>
