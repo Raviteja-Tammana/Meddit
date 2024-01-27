@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link } from "react-router-dom";
 
 import data from './data.js'
 import './AboutUs.css'
@@ -37,11 +38,13 @@ const Login  = (props) => {
         </div>
         <br />
         <div className={"inputContainer"}>
-            <input
-                className={"inputButton"}
-                type="button"
-                onClick={onButtonClick}
-                value={"Log in"} />
+            <Link to='/feed'>
+                <input
+                    className={"inputButton"}
+                    type="button"
+                    onClick={onButtonClick}
+                    value={"Log in"} />
+            </Link>
         </div>
     </div>
 
