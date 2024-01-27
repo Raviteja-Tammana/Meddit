@@ -1,11 +1,14 @@
 
 import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import MainNavigation from './landing_page/navigation/MainNavigation';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <Router>
+      <MainNavigation />
+    </Router>
   );
 }
 
