@@ -61,11 +61,13 @@ const AboutUs = () => {
     })
     return(
         <div className="main">
-            <div>
+            <div className="alldivs">
                 {AllDivs}
             </div>
+            <div className="alllogin">
+                <Login />
+            </div>
             
-            <Login />
         </div>
     ) 
 };
