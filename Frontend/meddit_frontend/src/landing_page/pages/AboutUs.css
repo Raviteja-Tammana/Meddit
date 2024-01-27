@@ -4,15 +4,29 @@
     margin-top: 150px;
 }
 
+.alldivs{
+    width: 70%;
+    height: fit-content;
+    border-color: black;
+}
+
+.alllogin{
+    display: block;
+    width: 50%;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
+
 .info{
     display: block;
-    margin: 40px 400px 0px 400px;
+    margin: 40px 100px 0px 100px;
     padding: 20px;
     background-color: #C98095;
     color: white;
     padding: 10px;
     border-radius: 30px;
-    box-shadow: 2px 2px 20px 23px ;
     text-align: center;
 }
 
@@ -20,44 +34,19 @@
     text-align: center;
 }
 
-.mainContainer {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .titleContainer {
-    display: flex;
-    flex-direction: column;
+.titleContainer{
     font-size: 64px;
-    font-weight: bolder;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .buttonContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 260px;
-  }
-  
-  .inputContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  
-  .inputBox {
+  font-weight: bolder;
+  align-items: center;
+
+}
+
+.inputBox {
     height: 48px;
     width: 400px;
     font-size: large;
     border-radius: 8px;
     border: 1px solid grey;
     padding-left: 8px;
-  }
-  
+}  
+
