@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {Link, useNavigate } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 import data from './data.js'
-import './AboutUs.css'
+import './LoginPage.css'
 
 // This is a div for the single block of text.
 const SingleDiv = props => {
@@ -17,7 +17,6 @@ const SingleDiv = props => {
 // This is the login side
 const Login  = (props) => {
     const [email, setEmail] = useState("");
-    const navigate = useNavigate();
 
     const onButtonClick = () => {
         fetch('http://localhost:8080/login', {
@@ -28,14 +27,9 @@ const Login  = (props) => {
                 'Content-Type': 'application/json'
               },
         }).then(function(response) {
-          console.log(response.json())
-          navigate('/random', {
-            state:{
-              data: `${response.json()}`
-            }
-          })
-      });
-
+            console.log(response)
+            return response.json();
+        });
     }
 
 
@@ -54,12 +48,14 @@ const Login  = (props) => {
         </div>
         <br />
         <div className={"inputContainer"}>
-            <input
-                className={"inputButton"}
-                type="button"
-                onClick={onButtonClick}
-                value={'>>'}
-                />
+            <Link to='/feed'>
+                <input
+                    className={"inputButton"}
+                    type="button"
+                    onClick={onButtonClick}
+                    value={'>>'}
+                    />
+            </Link>
         </div>
     </div>
 
@@ -90,4 +86,4 @@ const LoginPage = () => {
     ) 
 };
 
-export default AboutUs;
+export default LoginPage

@@ -13,6 +13,9 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
+import qs from "querystring";
+
+
 /* CREATE DATABASE */
 let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
     if (err) { return console.error(err.message); }
@@ -71,7 +74,9 @@ app.post("/login", (req, res, next) => {
             console.log(feed);
             res.send(feed);
         });
+        // use post['blah'], etc.
     });
+
 
 });
 

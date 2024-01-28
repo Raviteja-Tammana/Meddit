@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './MainNavigation.css'
 import MainHeader from "./MainHeader";
-import logo from './meddit_logo.png'
+import logo from './meddit-removebg-preview.png'
 
 const MainNavigation = props => {
     return( 
@@ -14,6 +14,14 @@ const MainNavigation = props => {
                     <img src={logo} alt="Meddit"></img>
                 </Link>
             </h1>
+            <div>
+                <Link to='/AboutUs'>
+                    <input
+                        className={"abUs"}
+                        type="button"
+                        value={"About Us"} />
+                </Link>
+            </div>
         </ MainHeader>
     )
 };
