@@ -36,24 +36,29 @@ const CreatePost = () => {
 
     return(
         <div className="newPost">
-            <input
+            <textarea
                 value={title}
-                placeholder="Enter a title"
+                placeholder="Enter a Title"
                 onChange={ev => setTitle(ev.target.value)}
-                className="newPost-Title" 
-            />
-
-            <input
+                className={"newPost-Title" }
+                required>
+            </textarea>
+            <br></br>
+            <textarea
+                rows="1"
                 value={content}
-                placeholder="Enter the content of the post"
+                placeholder=" Enter the Content of the Post"
                 onChange={ev => setContent(ev.target.value)}
-                className={"newPost-Content"} 
-            />
+                className={"newPost-Content"}
+                required>
+            </textarea>
 
+            <br></br>
             <input
                 value={"Post"} 
                 type="button"
                 onClick={onButtonClick}
+                className={"butPost"}
             />
         </div>
 
