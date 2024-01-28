@@ -15,35 +15,27 @@ const SingleDiv = props => {
 };
 
 // This is the login side
-const Login  = (props) => {
-    const [email, setEmail] = useState("");
-
-    const onButtonClick = () => {
-        fetch('http://localhost:8080/login', {
-            method: 'POST',
-            body: JSON.stringify({email: email}),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-        }).then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            return data
-        })
-        .catch((err) => {
-            this.setState({message: err})
-        });
-    }
-
-
-    return(
-    <div className={"mainContainer"}>
-        <div className={"titleContainer"}>
-            <div>Login</div>
-        </div>
-        <br />
-        <div className={"inputContainer"}>
+const LoginForm = () => {
+    // State to manage login form fields
+    const [loginData, setLoginData] = useState({
+      username: '',
+    });
+  
+    // Event handler for form field changes
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setLoginData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    return (
+      <div>
+        <h1>Login Form</h1>
+        <form action="http://127.0.0.1:8080/login" method="POST">
+          <label>
+            Username:
             <input
                 value={email}
                 placeholder="Enter your email here"
@@ -52,12 +44,13 @@ const Login  = (props) => {
         </div>
         <br />
         <div className={"inputContainer"}>
+            <Link to='/feed'>
                 <input
                     className={"inputButton"}
                     type="button"
                     onClick={onButtonClick}
                     value={"Log in"} />
-            
+            </Link>
         </div>
     </div>
 
@@ -81,7 +74,7 @@ const AboutUs = () => {
                 {AllDivs}
             </div>
             <div className="alllogin">
-                <Login />
+                <LoginForm />
             </div>
             
         </div>
