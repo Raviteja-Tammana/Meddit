@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 /* CREATE DATABASE */
-let db = new sqlite3.Database('~\\HackatUCI\\posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
+let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
     if (err) { return console.error(err.message); }
     console.log('Connected to the in-memory SQlite database.');
 });
