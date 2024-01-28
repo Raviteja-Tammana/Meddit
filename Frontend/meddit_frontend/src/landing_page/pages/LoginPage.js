@@ -43,7 +43,6 @@ const Login  = (props) => {
         }).then(function(response) {
             return response.json();
         }).then(function(data){
-            console.log(data)
             navigate('/feed', {
                     state:{
                     data: data
