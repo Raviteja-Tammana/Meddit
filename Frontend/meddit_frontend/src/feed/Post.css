@@ -47,6 +47,7 @@ html {
 }
 
 .post-button{
+    background: rgb(251, 241, 243);
     height: 40px;
     width: 100px;
     border-radius: 10px;
