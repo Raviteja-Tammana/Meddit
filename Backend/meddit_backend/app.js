@@ -111,16 +111,27 @@ app.post('/like', (req, res) => {
 
     var id = req.body['postID'];
     var likes = req.body['likes'];
+    var isLiked = req.body["isLiked"];
+
+    var modified = 0;
+    if(isLiked) {
+        modified = 1;
+    }
+    else {
+        modified = -1;
+    }
+
+
+    let update = 'UPDATE Posts SET likes = ' + likes + modified + ' WHERE postID = ' + postID;
+    db.run(update);
 
     let feed = [];
-    var sql = 'SELECT * FROM Posts WHERE id = ' + id;
+    var sql = 'SELECT * FROM Posts WHERE postID = ' + postID;
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
             if(err) {
                 console.log(err);
             }
-            let update = 'UPDATE Posts SET likes = ' + likes + 1;
-
             feed.push(row);
         }, function() {
             console.log(feed);
