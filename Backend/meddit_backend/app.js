@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 /* CREATE DATABASE */
-let db = new sqlite3.Database('~\\HackatUCI\\posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
+let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
     if (err) { return console.error(err.message); }
     console.log('Connected to the in-memory SQlite database.');
 });
@@ -25,7 +25,8 @@ function postLogger(req, res, next) {
 app.use(postLogger);
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../Frontend/meddit_frontend/public', 'index.html'));
+    console.log(req.url);
+    res.send(path.join(__dirname, '../../Frontend/meddit_frontend/src', 'index.js'));
 });
 
 // send email to frontend

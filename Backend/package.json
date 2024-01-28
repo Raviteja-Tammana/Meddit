@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Meddit is a Healthcare app addressing the 3rd highest cause of fatalities in the United States.",
-  "main": "index.js",
+  "main": "meddit_backend/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
