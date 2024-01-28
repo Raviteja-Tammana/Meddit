@@ -14,13 +14,25 @@ const SingleDiv = props => {
     )
 };
 
+export const validEmail = new RegExp(
+    '^[a-zA-Z0-9._:$!%-]+.[a-zA-Z0-9._:$!%-]+@hoag.org$'
+);
+
 // This is the login side
 const Login  = (props) => {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
+    const [emailErr, setEmailErr] = useState(false);
 
     const onButtonClick = () => {
-        console.log(email)
+        console.log(email);
+
+       // authentication
+        if (!validEmail.test(email)) {
+            setEmailErr(true);
+            return;
+        }
+
         fetch('http://localhost:8080/login', {
             method: 'POST',
             body: JSON.stringify({email: email}),
@@ -38,11 +50,7 @@ const Login  = (props) => {
                 }
             })
         })
-
-    
-
     }
-
 
     return(
     <div className={"mainContainer"}>
@@ -65,11 +73,10 @@ const Login  = (props) => {
                 onClick={onButtonClick}
                 value={'>>'}
                 />
+            {emailErr && <p>Your email is invalid</p>}
         </div>
     </div>
-
-    )
-}
+)}
 
 // Having all our divs on the landing page.
 const LoginPage = () => {
@@ -80,7 +87,6 @@ const LoginPage = () => {
                 content={info.content}
             />
         )  
-
     })
     return(
         <div className="main">
@@ -89,8 +95,7 @@ const LoginPage = () => {
             </div>
             <div className="alllogin">
                 <Login />
-            </div>
-            
+            </div>    
         </div>
     ) 
 };
