@@ -6,8 +6,10 @@ import MainNavigation from './landing_page/navigation/MainNavigation';
 
 import LoginPage from './landing_page/pages/LoginPage.js'
 import Feed from './feed/feed.js';
-import SayHi from './feed/random.js';
 import CreatePost from './creatingPost/creating.js';
+import Info from './landing_page/pages/AboutUs.js';
+import NewFeed from './feed/newFeed.js';
+
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/feed' exact element={< Feed />}>
           </Route>
           <Route path='/creating' exact element={ <CreatePost />}></Route>
+          <Route path='/AboutUs' exact element={ <Info />}></Route>
+          <Route path='/newFeed' exact element={ <NewFeed />}></Route>
         </Routes>
       </main>
     </Router>
