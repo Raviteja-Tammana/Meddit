@@ -37,25 +37,21 @@ const LoginForm = () => {
           <label>
             Username:
             <input
-                value={email}
-                placeholder="Enter your email here"
-                onChange={ev => setEmail(ev.target.value)}
-                className={"inputBox"} />
-        </div>
-        <br />
-        <div className={"inputContainer"}>
-            <Link to='/feed'>
-                <input
-                    className={"inputButton"}
-                    type="button"
-                    onClick={onButtonClick}
-                    value={"Log in"} />
-            </Link>
-        </div>
-    </div>
-
-    )
-}
+              type="text"
+              name="username"
+              value={loginData.username}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+  
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  };
+  
 
 // Having all our divs on the landing page.
 const AboutUs = () => {

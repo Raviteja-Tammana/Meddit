@@ -19,7 +19,7 @@ function App() {
           </Route>
           <Route path='/feed/:name' exact element={< Feed />}>
             
-          </Route>
+          </Route>i
         </Routes>
       </main>
     </Router>
