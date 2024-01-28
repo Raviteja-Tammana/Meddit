@@ -77,12 +77,12 @@ app.post('/post', (req, res) => {
 
     var postID = uuidv4();
     var title = req.body['title'];
-    var content = req.bdy['content'];
+    var content = req.body['content'];
     var datetime = new Date();
     var likes = 0;
 
-    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-    db.run(sql, [postID, title, content, datetime, likes], err => {
+    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
+    db.run(sql, [postID, title, datetime, likes, content], err => {
         if(err) {
             return console.log(err);
         }
