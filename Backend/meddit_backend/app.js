@@ -17,7 +17,6 @@ let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_REA
     if (err) { return console.error(err.message); }
     console.log('Connected to the in-memory SQlite database.');
 });
-//postID, title, user, date, likes, content
 
 db.run( `CREATE TABLE Posts (
         postID int primary key not null, 
@@ -48,6 +47,7 @@ app.post("/login", (req, res) => {
     let user = emailArray[0];
     let domain = emailArray[1];
     res.send(req.body); 
+    
 });
 
 app.listen(port, () => {
