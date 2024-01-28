@@ -10,10 +10,11 @@
 }
 
 .newPost-Content {
+    text-align: center;
     font-size: 20px;
     height: 300px;
     width: 800px;
-    margin-left: 300px;
+    margin-left: 337px;
     overflow-wrap: break-word;
     resize: none;
     border-radius: 10px;
