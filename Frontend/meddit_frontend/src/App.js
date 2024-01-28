@@ -6,8 +6,7 @@ import MainNavigation from './landing_page/navigation/MainNavigation';
 
 import AboutUs from './landing_page/pages/LoginPage.js';
 import Feed from './feed/feed.js';
-
-import Hi from './random.js'
+import SayHi from './feed/random.js';
 
 function App() {
   return (
@@ -17,7 +16,7 @@ function App() {
         <Routes>
           <Route path='/' exact element={< AboutUs />}>
           </Route>
-          <Route path='/feed/:name' exact element={< Feed />}>
+          <Route path='/feed' exact element={< Feed />}>
             
           </Route>i
         </Routes>
