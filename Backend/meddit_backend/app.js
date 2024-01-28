@@ -4,21 +4,15 @@ import cors from "cors";
 import { dirname } from 'path';
 import path from 'path';
 import { fileURLToPath } from "url";
-import exp from "constants";
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { v4 as uuidv4 } from "uuid";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 8080;
 
 app.use(cors());
 app.use(express.json());
 
-
-/* CREATE DATABASE */
-let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
-    if (err) { return console.error(err.message); }
-    console.log('Connected to the in-memory SQlite database.');
-});
 
 function opendb() {
     let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
@@ -37,16 +31,16 @@ function closedb(db) {
   });
 }
 
-
+let db = opendb();
 db.run( `CREATE TABLE IF NOT EXISTS Posts (
-        postID int primary key not null, 
+        postID text primary key not null, 
         title text not null,
-        user text not null,
         date text not null,
         likes int not null,
         content text not null
     )`
 );
+closedb(db);
 
 function postLogger(req, res, next) {
     next();
@@ -57,21 +51,7 @@ app.get('/', (req, res) => {
     res.send(path.join(__dirname, '../../Frontend/meddit_frontend/src', 'index.js'));
 });
 
-
 app.post("/login", (req, res) => { 
-    let email = req['email'];
-    console.log(email);
-    // const emailArray = email.split("@");
-    // let user = emailArray[0];
-    // let domain = emailArray[1];
-
-    // var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-    // db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
-    //     if(err) {
-    //         return console.log(err.message);
-    //     }
-    // });
-
     let db = opendb();
 
     let sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
@@ -90,15 +70,51 @@ app.post("/login", (req, res) => {
     });
 
     closedb(db);
-
-
 });
 
+app.post('/post', (req, res) => {
+    let db = opendb();
+
+    var postID = uuidv4();
+    var title = req.body['title'];
+    var content = req.bdy['content'];
+    var datetime = new Date();
+    var likes = 0;
+
+    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
+    db.run(sql, [postID, title, content, datetime, likes], err => {
+        if(err) {
+            return console.log(err);
+        }
+    });
+
+    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    let feed = [];
+    db.serialize((callback) => {
+        db.each(sql, (err, row) => {
+            if(err) {
+                console.log(err.message);
+            }
+            feed.push(row);
+        }, function() {
+            console.log(feed);
+            res.setHeader('Content-Type', 'application/json');
+            res.send(feed);
+        });
+    });
 
 
-
+    closedb(db);
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+// var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
+// db.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
+//     if(err) {
+//         return console.log(err.message);
+//     }
+// });
 
