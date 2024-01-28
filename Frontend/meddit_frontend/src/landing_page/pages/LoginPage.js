@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Link } from "react-router-dom";
 
 import data from './data.js'
-import './AboutUs.css'
+import './LoginPage.css'
 
 // This is a div for the single block of text.
 const SingleDiv = props => {
@@ -63,7 +63,7 @@ const Login  = (props) => {
 }
 
 // Having all our divs on the landing page.
-const AboutUs = () => {
+const LoginPage = () => {
     const AllDivs = data.map(info => {
         return (
             <SingleDiv 
@@ -86,4 +86,4 @@ const AboutUs = () => {
     ) 
 };
 
-export default AboutUs
+export default LoginPage

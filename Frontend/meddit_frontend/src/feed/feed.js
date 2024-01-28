@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Post from './Post';
+import {Link } from "react-router-dom";
 
 import DUMMY_DATA from './data';
 import './feed.css'
@@ -7,18 +8,26 @@ import './feed.css'
 const Feed = () => {
     const AllInfo = DUMMY_DATA.map(info => {
         return(
-            <Post 
-                title={info.title}
-                date = {info.date}
-                content = {info.content}
-                id={info.postID}
-            />
+            <span>
+                <Post 
+                    title={info.title}
+                    date = {info.date}
+                    content = {info.content}
+                    id={info.postID}
+                />
+            </span>
         )
     })
     return(
-       <div className='allposts'>
+       <span className='allposts'>
+                <Link to='/creating'>
+                    <input
+                        className={"postButton"}
+                        type="button"
+                        value={"Add Post"} />
+                </Link>
             {AllInfo}
-       </div>
+       </span>
     )
 }
 

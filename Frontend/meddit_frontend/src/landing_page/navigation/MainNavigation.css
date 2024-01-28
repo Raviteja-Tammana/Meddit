@@ -19,13 +19,12 @@
   
   .main-navigation__title {
     color: white;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .main-navigation__title img{
-    width: 200px;
-    height: 70px;
+    margin-top: 7px;
+    width: 225px;
+    height: 80px;
   }
   
   .main-navigation__title a {
@@ -39,6 +38,23 @@
   
   .main-navigation__drawer-nav {
     height: 100%;
+  }
+
+  .abUs {
+    background-color: #C98095;
+    color: white;
+    border: 0px solid black;
+    margin-right: 50px;
+    font-size: 30px;
+    transition: all 0.1s ease 0s;
+  }
+
+  .abUs:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+    border-radius: 10px;
+    border: 5px solid white;
+    transition: all 0.1s ease 0s;
   }
   
   @media (min-width: 768px) {
