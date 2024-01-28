@@ -59,10 +59,11 @@ app.get('/', (req, res) => {
 
 
 app.post("/login", (req, res) => { 
-    let email = req['username'];
-    const emailArray = email.split("@");
-    let user = emailArray[0];
-    let domain = emailArray[1];
+    let email = req['email'];
+    console.log(email);
+    // const emailArray = email.split("@");
+    // let user = emailArray[0];
+    // let domain = emailArray[1];
 
     // var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
     // db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import data from './data.js'
 import './LoginPage.css'
@@ -17,8 +17,10 @@ const SingleDiv = props => {
 // This is the login side
 const Login  = (props) => {
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     const onButtonClick = () => {
+        console.log(email)
         fetch('http://localhost:8080/login', {
             method: 'POST',
             body: JSON.stringify({email: email}),
@@ -27,9 +29,18 @@ const Login  = (props) => {
                 'Content-Type': 'application/json'
               },
         }).then(function(response) {
-            console.log(response)
             return response.json();
-        });
+        }).then(function(data){
+            console.log(data)
+            navigate('/random', {
+                    state:{
+                    data: data
+                }
+            })
+        })
+
+    
+
     }
 
 
@@ -48,14 +59,12 @@ const Login  = (props) => {
         </div>
         <br />
         <div className={"inputContainer"}>
-            <Link to='/feed'>
-                <input
-                    className={"inputButton"}
-                    type="button"
-                    onClick={onButtonClick}
-                    value={'>>'}
-                    />
-            </Link>
+            <input
+                className={"inputButton"}
+                type="button"
+                onClick={onButtonClick}
+                value={'>>'}
+                />
         </div>
     </div>
 
@@ -86,4 +95,4 @@ const LoginPage = () => {
     ) 
 };
 
-export default LoginPage
+export default LoginPage;
