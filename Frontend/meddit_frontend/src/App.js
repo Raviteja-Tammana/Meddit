@@ -18,7 +18,6 @@ function App() {
           </Route>
           <Route path='/feed' exact element={< Feed />}>
           </Route>
-          <Route path='/random' exact element={< SayHi />}></Route>
         </Routes>
       </main>
     </Router>
