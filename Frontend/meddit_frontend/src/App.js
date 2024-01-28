@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MainNavigation from './landing_page/navigation/MainNavigation';
 
 import AboutUs from './landing_page/pages/AboutUs';
+import Feed from './feed/feed.js';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <main>
         <Routes>
           <Route path='/' exact element={< AboutUs />}>
+          </Route>
+          <Route path='/feed' exact element={< Feed />}>
+            
           </Route>
         </Routes>
       </main>
