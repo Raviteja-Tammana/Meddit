@@ -1,0 +1,62 @@
+.main{
+    display: flex;
+    margin-top: 150px;
+}
+
+.alldivs{
+    width: 70%;
+    height: fit-content;
+    border-color: black;
+}
+
+.alllogin{
+    display: block;
+    width: 50%;
+    height: fit-content;
+    margin-top: 120px;
+    margin-bottom: auto;
+}
+
+.info{
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    margin: 40px 100px 0px 100px;
+    padding: 30px;
+    background-color: #C98095;
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+    text-align: center;
+    margin-left: 150px;
+    text-shadow: 1px 1px black;
+}
+
+.info h2{
+    text-align: center;
+}
+
+.titleContainer{
+    display: block;
+    margin: 0px auto 0px auto;
+    font-size: 64px;
+    font-weight: bolder;
+}
+
+.inputBox {
+    height: 48px;
+    width: 400px;
+    font-size: large;
+    border-radius: 8px;
+    border: 3px solid black;
+    padding-left: 8px;
+}  
+
+.inputButton {
+    background-color: #C98095;
+    color: black;
+    border-width: 2px;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 50px;
+}

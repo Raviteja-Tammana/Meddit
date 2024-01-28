@@ -1,4 +1,26 @@
 .allposts{
     display: block;
-    margin-top: 150px;
+    margin-top: 100px;
+    
+}
+
+.postButton {
+    background-color: #C98095;
+    margin-left: 675px;
+    padding: 10px;
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 2px 2px rgb(104, 104, 104);
+    transition: all 0.5s ease 0s;
+}
+
+.postButton:hover {
+    color: black;
+    transform: scale(1.3);
+    border-radius: 0px;
+    transition: all 0.5s ease 0s;
 }
