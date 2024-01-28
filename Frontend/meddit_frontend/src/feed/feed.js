@@ -11,6 +11,7 @@ const Feed = () => {
                 title={info.title}
                 date = {info.date}
                 content = {info.content}
+                id={info.postID}
             />
         )
     })
