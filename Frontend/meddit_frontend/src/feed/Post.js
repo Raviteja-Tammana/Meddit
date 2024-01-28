@@ -37,7 +37,7 @@ const Post = props => {
 
 
     return(
-        <Link to={`/feed/${props.id}`} className="links">
+        
             <div className="post">
                 <div className="post-header">
                         <p>{props.title}</p>
@@ -49,10 +49,16 @@ const Post = props => {
                     </p>
                 </div>
                 <div className="post-likes">
-                    <button><img src={liked ? heart_filled : heart_empty} alt="my image" onClick={buttonOnClick} /></button>
+                    <div className='likes-only'>
+                        <img className='like-image' src={liked ? heart_filled : heart_empty} alt="my image" onClick={buttonOnClick} />
+                        <p>{likes}</p>
+                    </div>
+                    
+                    <Link to={`/feed/${props.id}`} className="links">
+                        <button className='post-button'>READ MORE</button>
+                    </Link>
                 </div>
             </div>
-       </Link>
     )
 }
 

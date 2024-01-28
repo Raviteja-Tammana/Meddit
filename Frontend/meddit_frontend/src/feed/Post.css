@@ -40,3 +40,26 @@ html {
     text-decoration: none;
     color: black ;
 }
+
+.like-image{
+    height: 30px;
+    width: 30px;
+}
+
+.post-button{
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+.likes-only{
+    display: flex;
+    
+}
+.post-likes{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+}

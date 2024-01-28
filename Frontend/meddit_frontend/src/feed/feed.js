@@ -21,12 +21,15 @@ const Feed = () => {
     })
     return(
        <span className='allposts'>
+            <div className='buttons'>
+                <button>REPORT</button>
                 <Link to='/creating'>
                     <input
                         className={"postButton"}
                         type="button"
                         value={"Add Post"} />
                 </Link>
+            </div>
             {AllInfo}
        </span>
     )

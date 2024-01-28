@@ -8,7 +8,9 @@ import LoginPage from './landing_page/pages/LoginPage.js'
 import Feed from './feed/feed.js';
 import CreatePost from './creatingPost/creating.js';
 import Info from './landing_page/pages/AboutUs.js';
-import NewFeed from './feed/newFeed.js';
+
+import IndividualPost from './feed/IndividualPost.js';
+
 
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
           </Route>
           <Route path='/creating' exact element={ <CreatePost />}></Route>
           <Route path='/AboutUs' exact element={ <Info />}></Route>
-          <Route path='/newFeed' exact element={ <NewFeed />}></Route>
+          <Route path='/feed/:id' exact element={<IndividualPost />}></Route>
         </Routes>
       </main>
     </Router>
