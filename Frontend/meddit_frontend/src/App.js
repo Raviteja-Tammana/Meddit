@@ -7,6 +7,8 @@ import MainNavigation from './landing_page/navigation/MainNavigation';
 import AboutUs from './landing_page/pages/AboutUs';
 import Feed from './feed/feed.js';
 
+import Hi from './random.js'
+
 function App() {
   return (
     <Router>
@@ -15,7 +17,7 @@ function App() {
         <Routes>
           <Route path='/' exact element={< AboutUs />}>
           </Route>
-          <Route path='/feed' exact element={< Feed />}>
+          <Route path='/feed/:name' exact element={< Feed />}>
             
           </Route>
         </Routes>

@@ -26,9 +26,13 @@ const Login  = (props) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-        }).then(function(response) {
-            console.log(response)
-            return response.json();
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            return data
+        })
+        .catch((err) => {
+            this.setState({message: err})
         });
     }
 
@@ -48,13 +52,12 @@ const Login  = (props) => {
         </div>
         <br />
         <div className={"inputContainer"}>
-            <Link to='/feed'>
                 <input
                     className={"inputButton"}
                     type="button"
                     onClick={onButtonClick}
                     value={"Log in"} />
-            </Link>
+            
         </div>
     </div>
 
