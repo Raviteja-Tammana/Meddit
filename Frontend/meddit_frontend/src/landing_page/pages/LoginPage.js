@@ -8,8 +8,7 @@ import './LoginPage.css'
 const SingleDiv = props => {
     return (
         <div className="info">
-            <h2>{props.title}</h2>
-            <p>{props.content}</p>
+            <h2>{props.content}</h2>
         </div>
     )
 };
@@ -70,7 +69,7 @@ const Login  = (props) => {
                 className={"inputButton"}
                 type="button"
                 onClick={onButtonClick}
-                value={''}
+                value={'Login'}
                 />
             {emailErr && <p>Your email is invalid</p>}
         </div>
@@ -82,7 +81,6 @@ const LoginPage = () => {
     const AllDivs = datalog.map(info => {
         return (
             <SingleDiv 
-                title={info.title}
                 content={info.content}
             />
         )  

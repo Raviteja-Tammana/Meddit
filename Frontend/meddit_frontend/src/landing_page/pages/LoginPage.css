@@ -18,18 +18,18 @@
 }
 
 .info{
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 5s;
-    -moz-animation: fadeIn 5s;
-    -o-animation: fadeIn 5s;
-    -ms-animation: fadeIn 5s;
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-animation: fadeIn 3s;
     display: block;
-    font-size: 100rem;
     margin: 20px 100px 0px 100px;
     padding: 30px;
-    color: black;
+    color: white;
     text-align: center;
     font-weight: bolder;
+    background-color: #C98095;
 }
 
 .info h2{
@@ -59,15 +59,16 @@
     border-width: 2px;
     border-radius: 10px;
     font-size: 18px;
-    width: 50px;
+    width: 150px;
+    height: 50px;
 }
 
 .mainContainer {
-    animation: fadeIn 9s;
-    -webkit-animation: fadeIn 9s;
-    -moz-animation: fadeIn 9s;
-    -o-animation: fadeIn 9s;
-    -ms-animation: fadeIn 9s;
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-animation: fadeIn 3s;
 }
 
 @keyframes fadeIn {
