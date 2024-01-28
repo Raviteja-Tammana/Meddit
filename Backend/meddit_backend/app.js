@@ -77,7 +77,7 @@ app.post('/post', (req, res) => {
 
     var postID = uuidv4();
     var title = req.body['title'];
-    var content = req.bdy['content'];
+    var content = req.body['content'];
     var datetime = new Date();
     var likes = 0;
 
