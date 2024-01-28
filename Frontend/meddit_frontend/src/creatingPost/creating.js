@@ -12,12 +12,13 @@ const CreatePost = () => {
     }
 
     return(
-        <div className="newPost" required>
+        <div className="newPost">
             <textarea
                 value={title}
                 placeholder="Enter a Title"
                 onChange={ev => setTitle(ev.target.value)}
-                className={"newPost-Title" }>
+                className={"newPost-Title" }
+                required>
             </textarea>
             <br></br>
             <textarea
@@ -25,7 +26,8 @@ const CreatePost = () => {
                 value={content}
                 placeholder=" Enter the Content of the Post"
                 onChange={ev => setContent(ev.target.value)}
-                className={"newPost-Content"}>
+                className={"newPost-Content"}
+                required>
             </textarea>
 
             <br></br>
