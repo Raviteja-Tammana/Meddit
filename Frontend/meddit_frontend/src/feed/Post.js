@@ -16,7 +16,7 @@ const Post = props => {
                     </p>
                 </div>
             </div>
-        </Link>
+       </Link>
     )
 }
 
