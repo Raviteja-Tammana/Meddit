@@ -78,7 +78,7 @@ app.post('/post', (req, res) => {
     var postID = uuidv4();
     var title = req.body['title'];
     var content = req.body['content'];
-    var datetime = new Date();
+    var datetime = new Date().getDate();
     var likes = 0;
 
     var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
@@ -103,18 +103,27 @@ app.post('/post', (req, res) => {
         });
     });
 
-
     closedb(db);
 })
+
+app.post('/like', (req, res) => {
+    let db = opendb();
+
+    closedb(db);
+
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
+
+// let datab = opendb()
 // var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-// db.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
+// datab.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
 //     if(err) {
 //         return console.log(err.message);
 //     }
 // });
+// closedb(db);
 
