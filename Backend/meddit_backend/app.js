@@ -4,6 +4,7 @@ import cors from "cors";
 import { dirname } from 'path';
 import path from 'path';
 import { fileURLToPath } from "url";
+import exp from "constants";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
@@ -40,11 +41,12 @@ app.get('/', (req, res) => {
 
 
 // send email to frontend
-app.post("/login", (req, res, next) => { 
-    let email = req.body["email"];
-    const emailArray = email.split("@");
-    let user = emailArray[0];
-    let domain = emailArray[1];
+app.post("/login", (req, res, next) => {
+    console.log(req.body);
+    // let email = req.body["username"];
+    // const emailArray = email.split("@");
+    // let user = emailArray[0];
+    // let domain = emailArray[1];
 
     // var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
     // db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
