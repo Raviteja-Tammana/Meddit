@@ -12,6 +12,9 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
+import qs from "querystring";
+
+
 /* CREATE DATABASE */
 let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err) => {
     if (err) { return console.error(err.message); }
@@ -41,35 +44,47 @@ app.get('/', (req, res) => {
 
 // send email to frontend
 app.post("/login", (req, res, next) => { 
-    let email = req.body["email"];
-    const emailArray = email.split("@");
-    let user = emailArray[0];
-    let domain = emailArray[1];
-
-    // var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-    // db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
-    //     if(err) {
-    //         return console.log(err.message);
-    //     }
-    // });
-
-    let sql = 'SELECT * FROM Posts WHERE PostID >= 1';
-    res.setHeader('Content-Type', 'application/json');
-    // db.all(sql, function(err, rows, fields) {
-    //     res.send(rows);
-    // });
-    let feed = [];
-    db.serialize((callback) => {
-        db.each(sql, (err, row) => {
-            if(err) {
-                console.log(err.message);
-            }
-            feed.push(row);
-        }, function() {
-            console.log(feed);
-            res.send(feed);
-        });
+    var body = '';
+    req.on('data', function (data) {
+        body += data;
     });
+
+    req.on('end', function () {
+        var post = qs.parse(body);
+        let email = post.username;
+        console.log(email);
+        const emailArray = email.split("@");
+        let user = emailArray[0];
+        let domain = emailArray[1];
+    
+        // var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
+        // db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
+        //     if(err) {
+        //         return console.log(err.message);
+        //     }
+        // });
+    
+        let sql = 'SELECT * FROM Posts WHERE PostID >= 1';
+        // db.all(sql, function(err, rows, fields) {
+        //     res.send(rows);
+        // });
+        let feed = [];
+        db.serialize((callback) => {
+            db.each(sql, (err, row) => {
+                if(err) {
+                    console.log(err.message);
+                }
+                feed.push(row);
+            }, function() {
+                console.log(feed);
+                res.setHeader('Content-Type', 'application/json');
+                //res.redirect('localhost:8080/feed');
+                res.send(feed);
+            });
+        });
+        // use post['blah'], etc.
+    });
+
 
 });
 
