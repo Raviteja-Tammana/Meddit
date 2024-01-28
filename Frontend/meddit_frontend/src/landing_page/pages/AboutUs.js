@@ -28,6 +28,7 @@ const Login  = (props) => {
                 'Content-Type': 'application/json'
               },
         }).then(function(response) {
+          console.log(response.json())
           navigate('/random', {
             state:{
               data: `${response.json()}`
