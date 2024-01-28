@@ -1,7 +1,7 @@
 .post-header {
     display: flex;
     justify-content: space-between;
-    
+    background-color: #C98095;
 }
 
 .post {
@@ -12,6 +12,25 @@
     margin-bottom: 30px;
     border: 1px solid;
     padding: 25px;
+    background-color: #C98095;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 5px 5px rgb(104, 104, 104);
+    font-style: italic;
+    font-weight: 400;
+    background-color: #C98095;
+}
+
+.post-header {
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: #C98095;
+    font-size: 2.5ex;
+}
+
+.post-content {
+    background-color: #C98095;
 }
 
 .links{
