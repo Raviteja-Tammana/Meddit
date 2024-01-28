@@ -77,24 +77,47 @@ app.post('/post', (req, res) => {
 
     var postID = uuidv4();
     var title = req.body['title'];
-    var datetime = new Date().getDate();
+    var datetime = new Date().toDateString();
     var likes = 0;
     var content = req.body['content'];
 
     var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
-    db.run(sql, [postID, title, datetime, likes, content], err => {
-        if(err) {
-            return console.log(err);
-        }
-    });
+    db.run(sql, [postID, title, datetime, likes, content], function(err) {
+        db.
+        sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+        let feed = [];
+        db.serialize((callback) => {
+            db.each(sql, (err, row) => {
+                if(err) {
+                    console.log(err.message);
+                }
+                feed.push(row);
+            }, function() {
+                console.log(feed);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(feed);     
 
-    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+            });
+        });
+    });
+    closedb(db);
+})
+
+app.post('/like', (req, res) => {
+    let db = opendb();
+
+    var id = req.body['id'];
+    var likes = req.body['id'];
+
     let feed = [];
+    var sql = 'SELECT * FROM Posts WHERE id = ' + id;
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
             if(err) {
-                console.log(err.message);
+                console.log(err);
             }
+            let update = 'UPDATE Posts SET likes = ' + likes;
+
             feed.push(row);
         }, function() {
             console.log(feed);
@@ -102,12 +125,6 @@ app.post('/post', (req, res) => {
             res.send(feed);
         });
     });
-
-    closedb(db);
-})
-
-app.post('/like', (req, res) => {
-    let db = opendb();
 
     closedb(db);
 
