@@ -13,22 +13,23 @@
     display: block;
     width: 50%;
     height: fit-content;
-    margin-top: auto;
+    margin-top: 120px;
     margin-bottom: auto;
-    
 }
 
 .info{
     display: block;
-    font-family: comic sans-serif;
-    font-size: 22px;
+    font-weight: 400;
+    font-size: 20px;
     margin: 40px 100px 0px 100px;
-    padding: 20px;
+    padding: 30px;
     background-color: #C98095;
     color: white;
     padding: 10px;
     border-radius: 30px;
     text-align: center;
+    margin-left: 150px;
+    text-shadow: 1px 1px black;
 }
 
 .info h2{
