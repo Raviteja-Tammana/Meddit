@@ -17,6 +17,17 @@ let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_REA
     if (err) { return console.error(err.message); }
     console.log('Connected to the in-memory SQlite database.');
 });
+//postID, title, user, date, likes, content
+
+db.run( `CREATE TABLE Posts (
+        postID int primary key not null, 
+        title text not null,
+        user text not null,
+        date text not null,
+        likes int not null,
+        context text not null
+    )`
+);
 
 function postLogger(req, res, next) {
     console.log(req.body);
@@ -25,13 +36,17 @@ function postLogger(req, res, next) {
 app.use(postLogger);
 
 app.get('/', (req, res) => {
-    console.log(req.url);
     res.send(path.join(__dirname, '../../Frontend/meddit_frontend/src', 'index.js'));
 });
 
 // send email to frontend
 app.post("/login", (req, res) => { 
     // sendStatus invalid if not authenticated
+    let email = req.body["email"];
+    console.log(email);
+    const emailArray = email.split("@");
+    let user = emailArray[0];
+    let domain = emailArray[1];
     res.send(req.body); 
 });
 
