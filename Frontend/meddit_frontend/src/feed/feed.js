@@ -20,15 +20,21 @@ const Feed = () => {
         )
     })
     return(
-       <span className='allposts'>
-                <Link to='/creating'>
-                    <input
-                        className={"postButton"}
-                        type="button"
-                        value={"Add Post"} />
-                </Link>
-            {AllInfo}
-       </span>
+            <div className='allposts'>
+                <div className='buttons'>
+                    <a href="https://www.hoag.org/about-hoag/corporate-information/corporate-compliance/" target="_blank">
+                        <button className='report'>REPORT</button>
+                    </a>
+                    <Link to='/creating'>
+                        <input
+                            className={"postButton"}
+                            type="button"
+                            value={"Add Post"} />
+                    </Link>
+                </div>
+
+                {AllInfo}
+            </div>
     )
 }
 
