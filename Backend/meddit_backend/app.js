@@ -81,14 +81,14 @@ app.post('/post', (req, res) => {
     var likes = 0;
     var content = req.body['content'];
 
-    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
+    var sql = 'INSERT INTO Posts(postID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
     db.run(sql, [postID, title, datetime, likes, content], function(err) {
         if(err) {
             return console.log(err);
         }
     });
 
-    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    sql = 'SELECT * FROM Posts WHERE postID >= 1'; 
     let feed = [];
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
@@ -109,8 +109,8 @@ app.post('/post', (req, res) => {
 app.post('/like', (req, res) => {
     let db = opendb();
 
-    var id = req.body['id'];
-    var likes = req.body['id'];
+    var id = req.body['postID'];
+    var likes = req.body['likes'];
 
     let feed = [];
     var sql = 'SELECT * FROM Posts WHERE id = ' + id;
@@ -119,7 +119,7 @@ app.post('/like', (req, res) => {
             if(err) {
                 console.log(err);
             }
-            let update = 'UPDATE Posts SET likes = ' + likes;
+            let update = 'UPDATE Posts SET likes = ' + likes + 1;
 
             feed.push(row);
         }, function() {
@@ -138,12 +138,4 @@ app.listen(port, () => {
 });
 
 
-// let datab = opendb()
-// var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-// datab.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
-//     if(err) {
-//         return console.log(err.message);
-//     }
-// });
-// closedb(db);
 
