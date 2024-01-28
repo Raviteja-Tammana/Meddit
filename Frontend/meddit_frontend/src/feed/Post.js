@@ -4,7 +4,6 @@ import './Post.css'
 
 const Post = props => {
     return(
-        <Link to='/feed/{props.id}'>
             <div className="post">
                 <div className="post-header">
                         <p>{props.title}</p>
@@ -16,7 +15,6 @@ const Post = props => {
                     </p>
                 </div>
             </div>
-        </Link>
     )
 }
 
