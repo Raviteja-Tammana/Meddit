@@ -32,7 +32,7 @@ const Login  = (props) => {
             return response.json();
         }).then(function(data){
             console.log(data)
-            navigate('/random', {
+            navigate('/feed', {
                     state:{
                     data: data
                 }

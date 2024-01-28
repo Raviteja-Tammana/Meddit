@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import Post from './Post';
-import {Link } from "react-router-dom";
+import {Link, useLocation } from "react-router-dom";
 
-import DUMMY_DATA from './data';
 import './feed.css'
 
 const Feed = () => {
-    const AllInfo = DUMMY_DATA.map(info => {
+    const location = useLocation();
+    const AllInfo = location.state.data.map(info => {
         return(
             <span>
                 <Post 
                     title={info.title}
                     date = {info.date}
-                    content = {info.content}
+                    content = {info.context}
                     id={info.postID}
                 />
             </span>
