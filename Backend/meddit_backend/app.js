@@ -82,7 +82,7 @@ app.post('/post', (req, res) => {
     var likes = 0;
 
     var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
-    db.run(sql, [postID, title, content, datetime, likes], err => {
+    db.run(sql, [postID, title, datetime, likes, content], err => {
         if(err) {
             return console.log(err);
         }
