@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import data from './data.js'
 import './AboutUs.css'
@@ -15,46 +15,58 @@ const SingleDiv = props => {
 };
 
 // This is the login side
-const LoginForm = () => {
-    // State to manage login form fields
-    const [loginData, setLoginData] = useState({
-      username: '',
-    });
-  
-    // Event handler for form field changes
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setLoginData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
-  
-    return (
-      <div>
-        <h1>Login Form</h1>
-        <form action="http://127.0.0.1:8080/login" method="POST">
-          <label>
-            Username:
+const Login  = (props) => {
+    const [email, setEmail] = useState("");
+    const navigate = useNavigate();
+
+    const onButtonClick = () => {
+        fetch('http://localhost:8080/login', {
+            method: 'POST',
+            body: JSON.stringify({email: email}),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+        }).then(function(response) {
+          navigate('/random', {
+            state:{
+              data: `${response.json()}`
+            }
+          })
+      });
+
+    }
+
+
+    return(
+    <div className={"mainContainer"}>
+        <div className={"titleContainer"}>
+            <div>Login</div>
+        </div>
+        <br />
+        <div className={"inputContainer"}>
             <input
-              type="text"
-              name="username"
-              value={loginData.username}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-  
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    );
-  };
-  
+                value={email}
+                placeholder="Enter your email here"
+                onChange={ev => setEmail(ev.target.value)}
+                className={"inputBox"} />
+        </div>
+        <br />
+        <div className={"inputContainer"}>
+            <input
+                className={"inputButton"}
+                type="button"
+                onClick={onButtonClick}
+                value={'>>'}
+                />
+        </div>
+    </div>
+
+    )
+}
 
 // Having all our divs on the landing page.
-const AboutUs = () => {
+const LoginPage = () => {
     const AllDivs = data.map(info => {
         return (
             <SingleDiv 
@@ -70,11 +82,11 @@ const AboutUs = () => {
                 {AllDivs}
             </div>
             <div className="alllogin">
-                <LoginForm />
+                <Login />
             </div>
             
         </div>
     ) 
 };
 
-export default AboutUs;
+export default LoginPage

@@ -48,7 +48,15 @@
     width: 400px;
     font-size: large;
     border-radius: 8px;
-    border: 1px solid grey;
+    border: 3px solid black;
     padding-left: 8px;
 }  
 
+.inputButton {
+    background-color: #C98095;
+    color: black;
+    border-width: 2px;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 50px;
+}
