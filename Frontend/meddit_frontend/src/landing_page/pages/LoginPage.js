@@ -13,9 +13,7 @@ const SingleDiv = props => {
     )
 };
 
-export const validEmail = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+.[a-zA-Z0-9._:$!%-]+@hoag.org$'
-);
+export const validEmail = new RegExp( '^[a-zA-Z0-9._:$!%-]+@hoag.org$' );
 
 // This is the login side
 const Login  = (props) => {

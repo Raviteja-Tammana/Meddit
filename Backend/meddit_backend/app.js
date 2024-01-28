@@ -77,18 +77,18 @@ app.post('/post', (req, res) => {
 
     var postID = uuidv4();
     var title = req.body['title'];
-    var datetime = new Date().getDate();
+    var datetime = new Date().toDateString();
     var likes = 0;
     var content = req.body['content'];
 
-    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
-    db.run(sql, [postID, title, datetime, likes, content], err => {
+    var sql = 'INSERT INTO Posts(postID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
+    db.run(sql, [postID, title, datetime, likes, content], function(err) {
         if(err) {
             return console.log(err);
         }
     });
 
-    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    sql = 'SELECT * FROM Posts WHERE postID >= 1'; 
     let feed = [];
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
@@ -99,22 +99,54 @@ app.post('/post', (req, res) => {
         }, function() {
             console.log(feed);
             res.setHeader('Content-Type', 'application/json');
+            res.send(feed);     
+
+        });
+    });
+    closedb(db);
+})
+
+app.post('/like', (req, res) => {
+    let db = opendb();
+
+    var id = req.body['postID'];
+    var likes = req.body['likes'];
+    var isLiked = req.body["isLiked"];
+
+    var modified = 0;
+    if(isLiked) {
+        modified = 1;
+    }
+    else {
+        modified = -1;
+    }
+
+
+    let update = 'UPDATE Posts SET likes = ' + likes + modified + ' WHERE postID = ' + postID;
+    db.run(update);
+
+    let feed = [];
+    var sql = 'SELECT * FROM Posts WHERE postID = ' + postID;
+    db.serialize((callback) => {
+        db.each(sql, (err, row) => {
+            if(err) {
+                console.log(err);
+            }
+            feed.push(row);
+        }, function() {
+            console.log(feed);
+            res.setHeader('Content-Type', 'application/json');
             res.send(feed);
         });
     });
 
-
     closedb(db);
-})
+
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-// var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-// db.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
-//     if(err) {
-//         return console.log(err.message);
-//     }
-// });
+
 
