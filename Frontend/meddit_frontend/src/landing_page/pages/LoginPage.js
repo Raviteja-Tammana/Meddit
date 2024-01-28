@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Link, useNavigate } from "react-router-dom";
 
-import data from './data.js'
+import datalog from './datalog.js'
 import './LoginPage.css'
 
 // This is a div for the single block of text.
@@ -14,9 +14,7 @@ const SingleDiv = props => {
     )
 };
 
-export const validEmail = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+.[a-zA-Z0-9._:$!%-]+@hoag.org$'
-);
+export const validEmail = new RegExp( '^[a-zA-Z0-9._:$!%-]+@hoag.org$' );
 
 // This is the login side
 const Login  = (props) => {
@@ -54,7 +52,7 @@ const Login  = (props) => {
     return(
     <div className={"mainContainer"}>
         <div className={"titleContainer"}>
-            <div>Login</div>
+            <div>Let's Talk.</div>
         </div>
         <br />
         <div className={"inputContainer"}>
@@ -70,7 +68,7 @@ const Login  = (props) => {
                 className={"inputButton"}
                 type="button"
                 onClick={onButtonClick}
-                value={'>>'}
+                value={''}
                 />
             {emailErr && <p>Your email is invalid</p>}
         </div>
@@ -79,7 +77,7 @@ const Login  = (props) => {
 
 // Having all our divs on the landing page.
 const LoginPage = () => {
-    const AllDivs = data.map(info => {
+    const AllDivs = datalog.map(info => {
         return (
             <SingleDiv 
                 title={info.title}
