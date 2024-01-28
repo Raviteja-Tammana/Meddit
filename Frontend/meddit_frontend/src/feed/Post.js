@@ -6,12 +6,12 @@ import './Post.css'
 
 const Post = props => {
 
-    const [likes, setLikes] = useState(0);
+    const [likes, setLikes] = useState(props.likes);
     const [liked, setLiked] = useState(false);
 
     const buttonOnClick = () => {
         
-        console.log("I got clicked")
+        console.log("likes before" + likes)
 
         fetch('http://localhost:8080/like', {
             method: 'POST',
@@ -29,6 +29,7 @@ const Post = props => {
             return response.json();
         }).then(function(data){
             setLikes(data[0].likes)
+            console.log("likes after" + likes)
         })
 
         setLiked(!liked);

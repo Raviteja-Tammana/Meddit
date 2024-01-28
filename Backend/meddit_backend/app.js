@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 app.post("/login", (req, res) => { 
     let db = opendb();
 
-    let sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    let sql = 'SELECT * FROM Posts'; 
     let feed = [];
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
@@ -87,7 +87,7 @@ app.post('/post', (req, res) => {
         }
     });
 
-    sql = 'SELECT * FROM Posts WHERE postID >= 1'; 
+    sql = 'SELECT * FROM Posts'; 
     let feed = [];
     db.serialize((callback) => {
         db.each(sql, (err, row) => {
@@ -110,37 +110,55 @@ app.post('/like', (req, res) => {
     var id = req.body['postID'];
     var likes = req.body['likes'];
     let numLikes = Number(likes);
+    console.log("numLikes: " + numLikes);
     var isLiked = req.body["isLiked"];
 
     var modified = 0;
     if(isLiked) {
-        modified = -1;
+        modified = 0;
     }
     else {
         modified = 1;
     }
 
     numLikes += modified;
-
+    console.log(numLikes);
 
     let update = 'UPDATE Posts SET likes = ' + numLikes + ' WHERE postID = ?';
-    console.log(update);
     var feed = [];
-    var sql = `SELECT * FROM Posts WHERE postID = "${id}"`;
-    console.log(sql);
+    var sql = `SELECT * FROM Posts WHERE postID = ?`;
     db.serialize((callback) => {
         db.run(update, [id])
 
-        db.each(sql, (err, row) => {
+        db.each(sql, [id], (err, row) => {
             if(err) {
                 console.log(err.message);
             }
+            console.log(row);
             feed.push(row)
-            console.log("here");
         }, function() {
             res.setHeader('Content-Type', 'application/json');
-            console.log(feed);
             res.send(feed);
+        });
+    });
+    closedb(db);
+});
+
+app.post("/expanded", (req, res) => {
+    let db = opendb();
+    var id = req.body["postID"];
+    let sql = 'SELECT * FROM Posts WHERE postID = ?';
+    var post = [];
+
+    db.serialize((callback) => {
+        db.each(sql,[id], (err, row) => {
+            if (err) {
+                console.log(err.message);
+            }
+            post.push(row);
+        }, function() {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(post);
         });
     });
     closedb(db);
