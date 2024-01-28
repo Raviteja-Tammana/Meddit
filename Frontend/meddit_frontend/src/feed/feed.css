@@ -1,12 +1,23 @@
 .allposts{
     display: block;
-    margin-top: 100px;
+    margin-top: 110px;
     
+}
+
+button {
+    background-color: rgb(125, 4, 4);
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    margin-left: 300px;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 2px 2px rgb(104, 104, 104);
 }
 
 .postButton {
     background-color: #C98095;
-    margin-left: 675px;
+    margin-left: 665px;
     padding: 10px;
     color: white;
     font-weight: 100;
