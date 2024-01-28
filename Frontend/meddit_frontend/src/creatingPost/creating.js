@@ -7,8 +7,14 @@ const CreatePost = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const navigate = useNavigate();
+    const [emptyErr, setEmptyErr] = useState(false);
 
     const onButtonClick = () => {
+        if (content.trim().length === 0 || title.trim().length === 0) {
+            setEmptyErr(true);
+            return;
+        }
+
         fetch('http://localhost:8080/post', {
             method: 'POST',
             body: JSON.stringify(
@@ -41,7 +47,7 @@ const CreatePost = () => {
                 placeholder="Enter a Title"
                 onChange={ev => setTitle(ev.target.value)}
                 className={"newPost-Title" }
-                required>
+                >
             </textarea>
             <br></br>
             <textarea
@@ -50,7 +56,7 @@ const CreatePost = () => {
                 placeholder=" Enter the Content of the Post"
                 onChange={ev => setContent(ev.target.value)}
                 className={"newPost-Content"}
-                required>
+                >
             </textarea>
 
             <br></br>
@@ -60,6 +66,7 @@ const CreatePost = () => {
                 onClick={onButtonClick}
                 className={"butPost"}
             />
+            {emptyErr && <p>You can't post without both content and a title!</p>}
         </div>
 
     )
