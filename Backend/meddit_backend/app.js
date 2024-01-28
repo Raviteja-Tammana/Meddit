@@ -8,7 +8,8 @@ const app = express();
 const port = 8080;
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../Frontend/meddit_frontend/public', 'index.html'));
+    console.log(req.url);
+    res.send(path.join(__dirname, '../../Frontend/meddit_frontend/src', 'index.js'));
 });
 
 app.listen(port, () => {
