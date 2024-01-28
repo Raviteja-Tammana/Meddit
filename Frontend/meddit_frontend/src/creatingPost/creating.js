@@ -25,7 +25,7 @@ const CreatePost = () => {
         }).then(function(data){
             console.log("here")
             console.log(data)
-            navigate('/newFeed', {
+            navigate('/feed', {
                     state:{
                     data: data
                 }

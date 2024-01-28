@@ -12,7 +12,7 @@ const Feed = () => {
                 <Post 
                     title={info.title}
                     date = {info.date}
-                    content = {info.context}
+                    content = {info.content}
                     id={info.postID}
                 />
             </span>
