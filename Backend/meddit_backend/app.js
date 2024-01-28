@@ -83,21 +83,24 @@ app.post('/post', (req, res) => {
 
     var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?)';
     db.run(sql, [postID, title, datetime, likes, content], function(err) {
-        db.
-        sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
-        let feed = [];
-        db.serialize((callback) => {
-            db.each(sql, (err, row) => {
-                if(err) {
-                    console.log(err.message);
-                }
-                feed.push(row);
-            }, function() {
-                console.log(feed);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(feed);     
+        if(err) {
+            return console.log(err);
+        }
+    });
 
-            });
+    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    let feed = [];
+    db.serialize((callback) => {
+        db.each(sql, (err, row) => {
+            if(err) {
+                console.log(err.message);
+            }
+            feed.push(row);
+        }, function() {
+            console.log(feed);
+            res.setHeader('Content-Type', 'application/json');
+            res.send(feed);     
+
         });
     });
     closedb(db);
