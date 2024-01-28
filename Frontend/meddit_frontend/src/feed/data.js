@@ -1,5 +1,3 @@
-
-
 const DUMMY_DATA = [
     {
         postID: 'kothi baby', 
@@ -11,7 +9,7 @@ const DUMMY_DATA = [
     },
     {
         postID: 'kothi baby', 
-        title: 'Misdiagnosis of Thyroid Disorder', 
+        title: 'Pulse Oximeter Equipment Failure', 
         user: 'dfaf', 
         date: 'January 26, 2024', 
         likes: '68', 
@@ -19,7 +17,7 @@ const DUMMY_DATA = [
     },
     {
         postID: 'kothi baby', 
-        title: 'Misdiagnosis of Thyroid Disorder', 
+        title: 'Medication Communication Mishap', 
         user: 'asd', 
         date: 'January 25, 2024', 
         likes: '267', 

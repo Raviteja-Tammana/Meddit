@@ -17,7 +17,6 @@ let db = new sqlite3.Database('posts.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_REA
     if (err) { return console.error(err.message); }
     console.log('Connected to the in-memory SQlite database.');
 });
-//postID, title, user, date, likes, content
 
 
 db.run( `CREATE TABLE IF NOT EXISTS Posts (
