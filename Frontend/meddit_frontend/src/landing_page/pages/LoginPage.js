@@ -20,7 +20,6 @@ const Login  = (props) => {
     const navigate = useNavigate();
 
     const onButtonClick = () => {
-        console.log(email)
         fetch('http://localhost:8080/login', {
             method: 'POST',
             body: JSON.stringify({email: email}),
@@ -31,7 +30,6 @@ const Login  = (props) => {
         }).then(function(response) {
             return response.json();
         }).then(function(data){
-            console.log(data)
             navigate('/feed', {
                     state:{
                     data: data
