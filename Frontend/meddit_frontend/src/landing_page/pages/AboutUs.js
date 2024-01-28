@@ -18,7 +18,6 @@ const Login  = (props) => {
     const [email, setEmail] = useState("");
 
     const onButtonClick = () => {
-        console.log(email);
         fetch('http://localhost:8080/login', {
             method: 'POST',
             body: JSON.stringify({email: email}),
