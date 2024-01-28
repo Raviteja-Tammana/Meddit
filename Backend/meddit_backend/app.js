@@ -33,7 +33,7 @@ function closedb(db) {
 
 let db = opendb();
 db.run( `CREATE TABLE IF NOT EXISTS Posts (
-        postID int primary key not null, 
+        postID text primary key not null, 
         title text not null,
         date text not null,
         likes int not null,
@@ -77,10 +77,31 @@ app.post('/post', (req, res) => {
 
     var postID = uuidv4();
     var title = req.body['title'];
-    var user
     var content = req.bdy['content'];
     var datetime = new Date();
     var likes = 0;
+
+    var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
+    db.run(sql, [postID, title, content, datetime, likes], err => {
+        if(err) {
+            return console.log(err);
+        }
+    });
+
+    sql = 'SELECT * FROM Posts WHERE PostID >= 1'; 
+    let feed = [];
+    db.serialize((callback) => {
+        db.each(sql, (err, row) => {
+            if(err) {
+                console.log(err.message);
+            }
+            feed.push(row);
+        }, function() {
+            console.log(feed);
+            res.setHeader('Content-Type', 'application/json');
+            res.send(feed);
+        });
+    });
 
 
     closedb(db);
@@ -90,8 +111,8 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-// var sql = 'INSERT INTO Posts(PostID, title, user, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
-// db.run(sql, [3, 'TEST_POST', user, '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
+// var sql = 'INSERT INTO Posts(PostID, title, date, likes, content) VALUES (?, ?, ?, ?, ?, ?)';
+// db.run(sql, [3, 'TEST_POST', '10/17/2023', 100, "This is a test post show to how cool we are"], err => {
 //     if(err) {
 //         return console.log(err.message);
 //     }
