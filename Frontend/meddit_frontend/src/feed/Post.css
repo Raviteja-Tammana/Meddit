@@ -13,3 +13,8 @@
     border: 1px solid;
     padding: 5px;
 }
+
+.links{
+    text-decoration: none;
+    color: black ;
+}

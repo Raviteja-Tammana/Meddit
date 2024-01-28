@@ -4,7 +4,7 @@ import './Post.css'
 
 const Post = props => {
     return(
-        <Link to='/feed/{props.id}'>
+        <Link to={`/feed/${props.id}`} className="links">
             <div className="post">
                 <div className="post-header">
                         <p>{props.title}</p>
