@@ -59,6 +59,7 @@ app.post("/login", (req, res) => {
         console.log(rows);
     });
 
+    res.setHeader('Content-Type', 'application/json');
     res.send(rows);
 });
 
