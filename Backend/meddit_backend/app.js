@@ -27,7 +27,7 @@ function closedb(db) {
     if (err) {
       return console.error(err.message);
     }
-    console.log('Close the database connection.');
+    console.log('Closed the database connection.');
   });
 }
 
@@ -63,7 +63,6 @@ app.post("/login", (req, res) => {
             }
             feed.push(row);
         }, function() {
-            console.log(feed);
             res.setHeader('Content-Type', 'application/json');
             res.send(feed);
         });
@@ -97,51 +96,54 @@ app.post('/post', (req, res) => {
             }
             feed.push(row);
         }, function() {
-            console.log(feed);
             res.setHeader('Content-Type', 'application/json');
             res.send(feed);     
 
         });
     });
     closedb(db);
-})
+});
 
 app.post('/like', (req, res) => {
     let db = opendb();
 
     var id = req.body['postID'];
     var likes = req.body['likes'];
+    let numLikes = Number(likes);
     var isLiked = req.body["isLiked"];
 
     var modified = 0;
     if(isLiked) {
-        modified = 1;
-    }
-    else {
         modified = -1;
     }
+    else {
+        modified = 1;
+    }
+
+    numLikes += modified;
 
 
-    let update = 'UPDATE Posts SET likes = ' + likes + modified + ' WHERE postID = ' + postID;
-    db.run(update);
-
-    let feed = [];
-    var sql = 'SELECT * FROM Posts WHERE postID = ' + postID;
+    let update = 'UPDATE Posts SET likes = ' + numLikes + ' WHERE postID = ?';
+    console.log(update);
+    var feed = [];
+    var sql = `SELECT * FROM Posts WHERE postID = "${id}"`;
+    console.log(sql);
     db.serialize((callback) => {
+        db.run(update, [id])
+
         db.each(sql, (err, row) => {
             if(err) {
-                console.log(err);
+                console.log(err.message);
             }
-            feed.push(row);
+            feed.push(row)
+            console.log("here");
         }, function() {
-            console.log(feed);
             res.setHeader('Content-Type', 'application/json');
+            console.log(feed);
             res.send(feed);
         });
     });
-
     closedb(db);
-
 });
 
 app.listen(port, () => {
