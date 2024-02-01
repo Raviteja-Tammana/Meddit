@@ -7,6 +7,7 @@ import Post from "./Post";
 
 const IndividualPost = () => {
     let { id } = useParams();
+    const [data, setData] = useState('');
 
     fetch('http://localhost:8080/expanded', {
         method: 'POST',
@@ -21,23 +22,29 @@ const IndividualPost = () => {
     }).then(function(response) {
         return response.json();
     }).then(function(data){
+        console.log(data);
+        setData(data[0]);
 
-        <Post 
-            title={data[0].title}
-            date = {data[0].date}
-            content = {data[0].content}
-            id={data[0].postID}
-            likes={data[0].likes}
-        />
     })
 
     const [solutions, setSolutions ] = useState("");
     const [experiences, setExpereiences] = useState("");
+
+    console.log(data.title)
     
     return(
 
         <div className="sections">
+            <Post 
+                title={data.title}
+                date = {data.date}
+                content = {data.content}
+                id={data.postID}
+                likes={data.likes}
+             />
+
             <textarea
+                rows={10}
                 placeholder="Propose Solution"
                 onChange={ev => setSolutions(ev.target.value)}
                 className={"postsol" }
@@ -45,6 +52,7 @@ const IndividualPost = () => {
             </textarea>
 
             <textarea
+                rows={10}
                 placeholder="Similar Experience"
                 onChange={ev => setExpereiences(ev.target.value)}
                 className={"similarexp"}
